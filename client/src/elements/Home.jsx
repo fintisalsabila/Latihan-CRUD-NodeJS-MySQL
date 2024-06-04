@@ -14,17 +14,17 @@ function Home() {
                 .then((res) => {
                     setData(res.data);
                 })
-                .catch((err) => console.log(err));
+                .catch((err) => console.error(err));
         }
     }, [deleted]);
 
     function handleDelete(id) {
         if (window.confirm("Are you sure you want to delete this user?")) {
             axios.delete(`/delete/${id}`)
-                .then((res) => {
+                .then(() => {
                     setDeleted(true);
                 })
-                .catch((err) => console.log(err));
+                .catch((err) => console.error(err));
         }
     }
 
@@ -38,12 +38,14 @@ function Home() {
                 backgroundRepeat: 'no-repeat'
             }}
         >
-            <h3 className="my-4">User List</h3>
-            <div className="d-flex justify-content-end mb-3">
-                <Link className="btn btn-success" to="/create">Add User</Link>
+            <div className="my-4">
+                <h3 className="text-center">User List</h3>
+                <div className="d-flex justify-content-end mb-3">
+                    <Link className="btn btn-success" to="/create">Add User</Link>
+                </div>
             </div>
             <div className="table-responsive">
-                <table className="table table-hover table-striped bg-white text-dark table-bordered">
+                <table className="table table-hover table-striped table-bordered bg-white text-dark">
                     <thead className="thead-dark">
                         <tr>
                             <th>ID</th>
